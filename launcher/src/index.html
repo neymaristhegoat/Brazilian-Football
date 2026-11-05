@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brazilian Football</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="launcher">
+        <div class="background-video">
+            <!-- Background video will go here -->
+        </div>
+        
+        <div class="header">
+            <h1>Brazilian Football</h1>
+            <div class="window-controls">
+                <button id="minimize">_</button>
+                <button id="close">X</button>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="news-section">
+                <h2>Latest News</h2>
+                <div id="news-feed">
+                    <!-- News items loaded dynamically -->
+                </div>
+            </div>
+
+            <div class="play-section">
+                <button id="play-button" class="play-btn">PLAY</button>
+                <div class="game-info">
+                    <p>Version: 0.1.0</p>
+                    <p id="status">Ready to play</p>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <button class="menu-btn" id="story-mode">Story Mode</button>
+                <button class="menu-btn" id="multiplayer">Multiplayer</button>
+                <button class="menu-btn" id="settings">Settings</button>
+                <button class="menu-btn" id="quit">Quit</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>

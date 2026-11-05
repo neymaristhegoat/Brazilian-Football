@@ -1,0 +1,65 @@
+# Game Configuration
+
+## Graphics Settings
+
+graphics:
+  resolution:
+    width: 1920
+    height: 1080
+  fullscreen: false
+  vsync: true
+  antialiasing: 4  # MSAA samples
+  shadow_quality: high  # low, medium, high, ultra
+  texture_quality: high
+  view_distance: 1000.0
+
+## Audio Settings
+
+audio:
+  master_volume: 1.0
+  music_volume: 0.7
+  sfx_volume: 0.8
+  voice_volume: 1.0
+  audio_device: "default"
+
+## Input Settings
+
+input:
+  mouse_sensitivity: 1.0
+  invert_y: false
+  controller_deadzone: 0.2
+  
+  # Key bindings
+  keyboard:
+    move_forward: W
+    move_back: S
+    move_left: A
+    move_right: D
+    sprint: Shift
+    shoot: Space
+    pass: E
+    tackle: Q
+    pause: Escape
+
+  gamepad:
+    move: left_stick
+    sprint: left_trigger
+    shoot: a_button
+    pass: x_button
+    tackle: b_button
+
+## Network Settings
+
+network:
+  max_players: 32
+  default_port: 7777
+  timeout: 30  # seconds
+  compression: true
+
+## Game Settings
+
+game:
+  match_duration: 90  # minutes (game time)
+  difficulty: medium  # easy, medium, hard, professional
+  auto_save: true
+  language: en  # en, pt_BR, es
