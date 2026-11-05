@@ -1,0 +1,17 @@
+1. Make file system skeleton
+2. Initialize git repo
+3. Build full graphics engine
+4. Get basic demo game running
+5. Fully complete compile files/ python scripts
+6. Make home screen in the game with nice ui and an example video in the background
+7. Finish building demo game and start on the main story mode 
+8. Finish building main story mode
+9. Get multiplayer prototype working
+10. Get user authentication with my github website (neymaristhegoat.github.io/brazilian-football) which will be used for the game
+11. Finish up multiplayer prototype and start working on the multiplayer open world mode
+12. Finish building multiplayer open world and start on the header 1v1 mode
+13. Finish header 1v1 mode
+14. Full test and find bugs and final overall polish
+15. Make game launcher and seamless connection with the github website authentication
+16. Release to github and my website for free
+
