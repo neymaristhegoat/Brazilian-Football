@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <memory>
+#include <vector>
 #include "renderer/Texture.h"
 
 namespace bf {

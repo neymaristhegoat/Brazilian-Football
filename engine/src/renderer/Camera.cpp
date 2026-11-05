@@ -32,10 +32,10 @@ void Camera::SetPerspective(float fov, float aspectRatio, float nearPlane, float
 
 void Camera::SetOrthographic(float left, float right, float bottom, float top, float nearPlane, float farPlane) {
     m_Type = CameraType::Orthographic;
-    m_Left = left;
-    m_Right = right;
-    m_Bottom = bottom;
-    m_Top = top;
+    m_OrthoLeft = left;
+    m_OrthoRight = right;
+    m_OrthoBottom = bottom;
+    m_OrthoTop = top;
     m_NearPlane = nearPlane;
     m_FarPlane = farPlane;
     m_ProjectionDirty = true;
@@ -81,7 +81,7 @@ glm::mat4 Camera::GetProjectionMatrix() const {
         if (m_Type == CameraType::Perspective) {
             m_ProjectionMatrix = glm::perspective(glm::radians(m_FOV), m_AspectRatio, m_NearPlane, m_FarPlane);
         } else {
-            m_ProjectionMatrix = glm::ortho(m_Left, m_Right, m_Bottom, m_Top, m_NearPlane, m_FarPlane);
+            m_ProjectionMatrix = glm::ortho(m_OrthoLeft, m_OrthoRight, m_OrthoBottom, m_OrthoTop, m_NearPlane, m_FarPlane);
         }
         m_ProjectionDirty = false;
     }

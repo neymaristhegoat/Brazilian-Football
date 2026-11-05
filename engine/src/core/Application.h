@@ -2,16 +2,39 @@
 
 #include <memory>
 #include <string>
+#include <chrono>
 
 namespace bf {
+
+class Window;
+
 namespace core {
 
 class Window;
+
+} // namespace core
+
+namespace renderer {
 class Renderer;
+}
+
+namespace input {
 class Input;
+}
+
+namespace audio {
 class AudioSystem;
+}
+
+namespace scene {
 class SceneManager;
+}
+
+namespace resources {
 class ResourceManager;
+}
+
+namespace core {
 
 /**
  * Main application class
@@ -28,11 +51,11 @@ public:
 
     // Accessors
     Window* GetWindow() const { return m_Window.get(); }
-    Renderer* GetRenderer() const { return m_Renderer.get(); }
-    Input* GetInput() const { return m_Input.get(); }
-    AudioSystem* GetAudio() const { return m_Audio.get(); }
-    SceneManager* GetSceneManager() const { return m_SceneManager.get(); }
-    ResourceManager* GetResourceManager() const { return m_ResourceManager.get(); }
+    renderer::Renderer* GetRenderer() const { return m_Renderer.get(); }
+    input::Input* GetInput() const { return m_Input.get(); }
+    audio::AudioSystem* GetAudio() const { return m_Audio.get(); }
+    scene::SceneManager* GetSceneManager() const { return m_SceneManager.get(); }
+    resources::ResourceManager* GetResourceManager() const { return m_ResourceManager.get(); }
 
     static Application& Get() { return *s_Instance; }
 
@@ -43,11 +66,11 @@ private:
 
 private:
     std::unique_ptr<Window> m_Window;
-    std::unique_ptr<Renderer> m_Renderer;
-    std::unique_ptr<Input> m_Input;
-    std::unique_ptr<AudioSystem> m_Audio;
-    std::unique_ptr<SceneManager> m_SceneManager;
-    std::unique_ptr<ResourceManager> m_ResourceManager;
+    std::unique_ptr<renderer::Renderer> m_Renderer;
+    std::unique_ptr<input::Input> m_Input;
+    std::unique_ptr<audio::AudioSystem> m_Audio;
+    std::unique_ptr<scene::SceneManager> m_SceneManager;
+    std::unique_ptr<resources::ResourceManager> m_ResourceManager;
 
     bool m_Running;
     float m_LastFrameTime;

@@ -59,7 +59,7 @@ private:
     float m_FarPlane;
 
     // Orthographic
-    float m_Left, m_Right, m_Bottom, m_Top;
+    float m_OrthoLeft, m_OrthoRight, m_OrthoBottom, m_OrthoTop;
 
     // Matrices
     mutable glm::mat4 m_ViewMatrix;

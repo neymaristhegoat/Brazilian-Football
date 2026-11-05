@@ -4,10 +4,13 @@
 #include <memory>
 #include <vector>
 #include <unordered_map>
+#include <cstdint>
 
 namespace bf {
 
+namespace renderer {
 class Renderer;
+}
 
 namespace scene {
 
@@ -21,7 +24,7 @@ public:
     void OnLoad();
     void OnUnload();
     void Update(float deltaTime);
-    void Render(Renderer* renderer);
+    void Render(renderer::Renderer* renderer);
 
     Entity* CreateEntity(const std::string& name = "Entity");
     void DestroyEntity(Entity* entity);
@@ -45,7 +48,7 @@ public:
     void Initialize();
     void Shutdown();
     void Update(float deltaTime);
-    void Render(Renderer* renderer);
+    void Render(renderer::Renderer* renderer);
 
     Scene* CreateScene(const std::string& name);
     void LoadScene(const std::string& name);

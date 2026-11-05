@@ -2,6 +2,7 @@
 
 #include <string>
 #include <memory>
+#include <cstdint>
 
 namespace bf {
 namespace renderer {
@@ -47,7 +48,7 @@ public:
     int GetHeight() const { return m_Height; }
     TextureFormat GetFormat() const { return m_Format; }
 
-private:
+protected:
     uint32_t m_TextureID;
     int m_Width;
     int m_Height;

@@ -70,6 +70,8 @@ public:
     float GetMass() const { return m_Mass; }
     const glm::vec3& GetVelocity() const { return m_Velocity; }
     const glm::vec3& GetAngularVelocity() const { return m_AngularVelocity; }
+    bool GetUseGravity() const { return m_UseGravity; }
+    bool GetIsKinematic() const { return m_IsKinematic; }
 
     void AddForce(const glm::vec3& force);
     void AddImpulse(const glm::vec3& impulse);

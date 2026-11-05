@@ -1,23 +1,33 @@
 #!/bin/bash
 
-# Brazilian Football - Quick Start Script
-# Sets up the development environment and builds the project
+# Brazilian Football - Enhanced Setup Script
+# Checks dependencies first, then builds
 
-set -e  # Exit on error
+set -e
 
+echo "======================================"
 echo "Brazilian Football - Development Setup"
 echo "======================================"
+echo ""
 
-# Check for required tools
-echo "Checking dependencies..."
+# Check if dependencies are installed
+echo "[1/5] Checking dependencies..."
+echo ""
 
-command -v cmake >/dev/null 2>&1 || { echo "CMake is required but not installed. Aborting." >&2; exit 1; }
-command -v python3 >/dev/null 2>&1 || { echo "Python 3 is required but not installed. Aborting." >&2; exit 1; }
+if [ -x "scripts/check-dependencies.sh" ]; then
+    ./scripts/check-dependencies.sh
+    if [ $? -ne 0 ]; then
+        echo ""
+        echo "Dependencies are missing. Install them first:"
+        echo "  ./scripts/install-dependencies.sh"
+        exit 1
+    fi
+else
+    echo "⚠ Dependency checker not found, proceeding anyway..."
+fi
 
-echo "✓ All required tools found"
-
-# Create necessary directories
-echo "Creating directory structure..."
+echo ""
+echo "[2/5] Creating directory structure..."
 mkdir -p build
 mkdir -p bin
 mkdir -p assets/models
@@ -29,25 +39,60 @@ mkdir -p external/lib
 
 echo "✓ Directories created"
 
-# Build the project
-echo "Building project..."
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    python3 scripts/compile-linux.py --debug
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-    python3 scripts/compile-mac.py --debug
+echo ""
+echo "[3/5] Verifying shader files..."
+if [ -f "assets/shaders/basic.vert" ] && [ -f "assets/shaders/basic.frag" ]; then
+    echo "✓ Shaders found"
 else
-    echo "Unsupported OS. Please build manually."
+    echo "⚠ Shader files missing (will be created during build)"
+fi
+
+echo ""
+echo "[4/5] Building project..."
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    python3 scripts/compile-linux.py $@
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    python3 scripts/compile-mac.py $@
+else
+    echo "Unsupported OS for automatic build."
+    echo "Please build manually with CMake."
     exit 1
 fi
 
 echo ""
-echo "======================================"
-echo "Setup complete!"
-echo ""
-echo "To run the game:"
-echo "  ./bin/BrazilianFootball"
-echo ""
-echo "To run tests:"
-echo "  cd build && ctest"
-echo ""
-echo "For more information, see docs/"
+echo "[5/5] Verifying build..."
+
+if [ -f "bin/BrazilianFootball" ] || [ -f "build/linux/bin/BrazilianFootball" ]; then
+    echo "✓ Executable built successfully"
+    
+    # Find the binary location
+    if [ -f "bin/BrazilianFootball" ]; then
+        BINARY="./bin/BrazilianFootball"
+    else
+        BINARY="./build/linux/bin/BrazilianFootball"
+    fi
+    
+    echo ""
+    echo "======================================"
+    echo "✓ Build complete!"
+    echo "======================================"
+    echo ""
+    echo "Graphics Demo Ready!"
+    echo ""
+    echo "To run the demo:"
+    echo "  $BINARY"
+    echo ""
+    echo "You should see:"
+    echo "  • Animated 3D scene"
+    echo "  • Rotating cubes and bouncing sphere"
+    echo "  • Orbiting camera"
+    echo "  • Real-time lighting"
+    echo ""
+    echo "Controls: ESC to exit"
+    echo ""
+else
+    echo "⚠ Executable not found"
+    echo ""
+    echo "Build may have completed but binary is in unexpected location."
+    echo "Check the build output above for errors."
+fi

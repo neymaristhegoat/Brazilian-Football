@@ -5,7 +5,9 @@
 
 namespace bf {
 
+namespace core {
 class Window;
+}
 
 namespace input {
 
@@ -66,7 +68,7 @@ public:
     Input();
     ~Input();
 
-    void Initialize(Window* window);
+    void Initialize(core::Window* window);
     void Update();
 
     // Keyboard

@@ -4,7 +4,7 @@
 #include "renderer/Renderer.h"
 #include "input/Input.h"
 #include "audio/AudioSystem.h"
-#include "scene/SceneManager.h"
+#include "scene/Scene.h"
 #include "resources/ResourceManager.h"
 #include <chrono>
 
@@ -35,28 +35,28 @@ bool Application::Initialize(int argc, char* argv[]) {
     }
 
     // Initialize renderer
-    m_Renderer = std::make_unique<Renderer>();
+    m_Renderer = std::make_unique<renderer::Renderer>();
     if (!m_Renderer->Initialize(m_Window.get())) {
         BF_LOG_ERROR("Failed to initialize renderer");
         return false;
     }
 
     // Initialize input system
-    m_Input = std::make_unique<Input>();
+    m_Input = std::make_unique<input::Input>();
     m_Input->Initialize(m_Window.get());
 
     // Initialize audio system
-    m_Audio = std::make_unique<AudioSystem>();
+    m_Audio = std::make_unique<audio::AudioSystem>();
     if (!m_Audio->Initialize()) {
         BF_LOG_WARN("Failed to initialize audio system");
     }
 
     // Initialize resource manager
-    m_ResourceManager = std::make_unique<ResourceManager>();
+    m_ResourceManager = std::make_unique<resources::ResourceManager>();
     m_ResourceManager->Initialize();
 
     // Initialize scene manager
-    m_SceneManager = std::make_unique<SceneManager>();
+    m_SceneManager = std::make_unique<scene::SceneManager>();
     m_SceneManager->Initialize();
 
     BF_LOG_INFO("Engine initialization complete");

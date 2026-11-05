@@ -26,6 +26,9 @@ public:
 
     void* GetNativeWindow() const { return m_NativeWindow; }
 
+    // Allow callbacks to modify dimensions
+    friend void GLFWFramebufferSizeCallback(void*, int, int);
+
 private:
     void* m_NativeWindow;
     std::string m_Title;

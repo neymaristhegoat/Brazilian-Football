@@ -16,7 +16,7 @@ Input::Input()
 Input::~Input() {
 }
 
-void Input::Initialize(Window* window) {
+void Input::Initialize(core::Window* window) {
     BF_LOG_INFO("Initializing input system...");
     // TODO: Setup input callbacks
 }

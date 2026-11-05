@@ -1,6 +1,7 @@
 #include "gameplay/Team.h"
 #include "gameplay/Player.h"
 #include "core/Logger.h"
+#include <algorithm>
 
 namespace bf {
 namespace game {

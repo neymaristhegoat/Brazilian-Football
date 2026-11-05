@@ -61,8 +61,10 @@ void PhysicsWorld::Shutdown() {
 void PhysicsWorld::Update(float deltaTime) {
     // Apply gravity and integrate
     for (auto* body : m_Bodies) {
-        if (body->m_UseGravity && !body->m_IsKinematic) {
-            body->m_Velocity += m_Gravity * deltaTime;
+        if (body->GetUseGravity() && !body->GetIsKinematic()) {
+            glm::vec3 velocity = body->GetVelocity();
+            velocity += m_Gravity * deltaTime;
+            body->SetVelocity(velocity);
         }
     }
 
@@ -88,9 +90,11 @@ void PhysicsWorld::AddRigidBody(RigidBody* body) {
 }
 
 void PhysicsWorld::RemoveRigidBody(RigidBody* body) {
-    auto it = std::find(m_Bodies.begin(), m_Bodies.end(), body);
-    if (it != m_Bodies.end()) {
-        m_Bodies.erase(it);
+    for (auto it = m_Bodies.begin(); it != m_Bodies.end(); ++it) {
+        if (*it == body) {
+            m_Bodies.erase(it);
+            break;
+        }
     }
 }
 

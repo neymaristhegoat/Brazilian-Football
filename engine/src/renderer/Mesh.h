@@ -2,6 +2,9 @@
 
 #include <cstdint>
 #include <vector>
+#include <memory>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 namespace bf {
 namespace renderer {
@@ -29,6 +32,11 @@ public:
 
     size_t GetVertexCount() const { return m_Vertices.size(); }
     size_t GetIndexCount() const { return m_Indices.size(); }
+
+    // Helper functions to create common shapes
+    static std::shared_ptr<Mesh> CreateCube(float size = 1.0f);
+    static std::shared_ptr<Mesh> CreatePlane(float width = 10.0f, float height = 10.0f);
+    static std::shared_ptr<Mesh> CreateSphere(float radius = 1.0f, uint32_t segments = 32, uint32_t rings = 16);
 
 private:
     std::vector<Vertex> m_Vertices;

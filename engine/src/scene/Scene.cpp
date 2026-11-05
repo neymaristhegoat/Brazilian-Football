@@ -31,7 +31,7 @@ void Scene::Update(float deltaTime) {
     }
 }
 
-void Scene::Render(Renderer* renderer) {
+void Scene::Render(renderer::Renderer* renderer) {
     for (auto& entity : m_Entities) {
         if (entity->IsActive()) {
             // TODO: Render entity components
@@ -94,7 +94,7 @@ void SceneManager::Update(float deltaTime) {
     }
 }
 
-void SceneManager::Render(Renderer* renderer) {
+void SceneManager::Render(renderer::Renderer* renderer) {
     if (m_ActiveScene) {
         m_ActiveScene->Render(renderer);
     }
